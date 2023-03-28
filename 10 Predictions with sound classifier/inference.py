@@ -34,7 +34,8 @@ def predict(model, input, target, class_mapping):
 if __name__ == "__main__":
     # load back the model
     cnn = CNNNetwork()
-    state_dict = torch.load("cnnnet.pth")
+    device = 'cuda' if torch.cuda.is_available() else 'cpu'
+    state_dict = torch.load("cnnnet.pth", map_location=torch.device(device))
     cnn.load_state_dict(state_dict)
 
     # load urban sound dataset dataset
